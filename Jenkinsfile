@@ -15,6 +15,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
+                sh 'aws s3 cp /var/lib/jenkins/workspace/JenkinsPipeline/index.html s3://rinoue-test-env-jenkins/ --region ap-northeast-1'
             }
         }
         stage('Test') {
