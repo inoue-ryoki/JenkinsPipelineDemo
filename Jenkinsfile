@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'Testing'
                 script {
-                    def url = 'https://rinoue-test-env-jenkins.s3.ap-northeast-1.amazonaws.com/index.html'
+                    def url = sh(script: "aws s3 presign s3://rinoue-test-env-jenkins/index.html --expires-in 60 --region ap-northeast-1", returnStdout: true).trim()
                     def response = sh(script: "curl -s -o /dev/null -w '%{http_code}' '$url'", returnStdout: true)
 
                     if (response == '200') {
