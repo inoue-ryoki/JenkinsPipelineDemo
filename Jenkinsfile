@@ -37,6 +37,7 @@ pipeline {
         stage('Release') {
             steps {
                 echo 'Releasing'
+                sh 'aws s3 cp /var/lib/jenkins/workspace/JenkinsPipeline/index.html s3://rinoue-prod-env-jenkins/ --region ap-northeast-1'
             }
         }
     }
